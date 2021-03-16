@@ -8,4 +8,5 @@ public interface Node {
     void setRight(Node right);
     String getValue();
     void setValue(String value);
+    int children();
 }

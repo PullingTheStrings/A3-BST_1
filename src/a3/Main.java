@@ -17,8 +17,28 @@ public class Main {
         BST bst = new BSTImpl();
         bst.insert("hello");
         bst.insert("world");
+        bst.insert("b");
+        bst.insert("enough");
+        bst.insert("aaaa");
         bst.insert("comp210");
+        bst.insert("flamingo");
+        bst.insert("ab");
+        bst.insert("aa");
+        bst.insert("a");
+
+        bst.insert("jump");
+        bst.insert("zealous");
+        bst.remove("zealous");
+        System.out.println(bst.height());
         System.out.println(bst.getRoot().getValue());
+        System.out.println(bst.getRoot().getLeft().getValue());
+        System.out.println(bst.getRoot().getRight().getValue());
+        System.out.println(bst.findMin());
+        System.out.println(bst.findMax());
+        System.out.println(bst.size());
+        System.out.println(bst.isFull());
+        System.out.println(bst.contains("c"));
+
 
     }
 }
