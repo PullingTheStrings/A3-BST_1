@@ -220,7 +220,10 @@ public class BSTImpl implements BST {
     @Override
     public Node get(String s) {//If the tree doesn't contain s, then it returns null. Otherwise, it runs its recursive method
         if(!contains(s)){return null;}
-        else{return get_r(s);}
+        else{Node node= get_r(s);
+        if(node.getValue()==null){return null;}
+        else{return node;}
+        }
     }
     private Node get_r(String s){//checks if the root is s, and if it isn't, then it determines which subtree s would be in and runs itself on that subtree.
         if(s.equals(root.getValue())){return root;}

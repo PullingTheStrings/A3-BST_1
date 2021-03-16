@@ -16,11 +16,13 @@ public class Main {
          */
         BST bst = new BSTImpl();
         bst.insert("b");
-        bst.insert("a");
-        bst.insert("c");
-        System.out.println(bst.get(null));
-        bst.insert(null);
-        System.out.println(bst.get(null));
+
+        System.out.println(bst.insert(null));
+        //System.out.println(bst.getRoot());
+        //System.out.println(bst.getRoot().getLeft());
+        //System.out.println(bst.getRoot().getRight());
+        System.out.println(bst.get("def")==null);
+
 
 
 
