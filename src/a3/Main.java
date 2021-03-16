@@ -15,6 +15,12 @@ public class Main {
          *
          */
         BST bst = new BSTImpl();
+        bst.insert("b");
+        bst.insert("a");
+        bst.insert("c");
+        System.out.println(bst.get(null));
+        bst.insert(null);
+        System.out.println(bst.get(null));
 
 
 

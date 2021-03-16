@@ -51,10 +51,12 @@ public class BSTImpl implements BST {
 
     @Override
     public String insert(String value) {//calls the recursive method to insert a string into the bst
+        if(value==null){return null;}
+        else{
         NodeImpl node=new NodeImpl(value);
         insert_r(node);
         size++;
-        return value;
+        return value;}
     }
 
     private void insert_r(NodeImpl node){//compares the node to the root of the tree, and it will call itself if
@@ -187,13 +189,14 @@ public class BSTImpl implements BST {
 
     @Override
     public boolean contains(String s) {//calls the recursive method to determine if the tree contains a certain string
-
-        return contains_r(s);
+        if(s==null){return false;}
+        else if(root==null){return false;}
+        else{return contains_r(s);}
     }
     private boolean contains_r(String s){//compares the string with the root, and if the strings are different, it
         //calls itself on the appropriate subtree. If there is no subtree, then it returns false.
-        if(root==null){return false;}
-        else if(s.equals(root.getValue())){return true;}
+
+        if(s.equals(root.getValue())){return true;}
 
         else if(s.compareTo(root.getValue())>0){
             if(root.getRight().getValue()==null){return false;}
