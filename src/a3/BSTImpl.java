@@ -42,8 +42,7 @@ public class BSTImpl implements BST {
     @Override
     public Node getRoot() {//returns the root (null if the root is null)
         if(root==null){
-            //Node nullNode=new NodeImpl(null);
-            //return nullNode;
+
             return null;
         }
         else{return root;}
@@ -56,6 +55,7 @@ public class BSTImpl implements BST {
         else if(root==null){
             NodeImpl node=new NodeImpl(value);
             root=node;
+            size++;
             return value;
         }
         else{
@@ -65,36 +65,7 @@ public class BSTImpl implements BST {
         return value;}
     }
 
-    /*private void insert_r(NodeImpl node){//compares the node to the root of the tree, and it will call itself if
-        //the node needs to be compared to a subtree.
-        if(root==null){root=node;}
-        else if(root.getValue().compareTo(node.getValue())<0){
-            if (root.getRight().getValue()==null){
-                root.setRight(node);
-            }
-            else {
-                subTree=new BSTImpl("");
-                subTree.setRoot(root.getRight());
-                subTree.insert_r(node);
-            }
-        }
-        else if(root.getValue().compareTo(node.getValue())>0){
-            if (root.getLeft().getValue()==null){
-                root.setLeft(node);
-            }
-            else {
-                subTree=new BSTImpl("");
-                subTree.setRoot(root.getLeft());
-                subTree.insert_r(node);
-            }
-        }
-        else{
-            Node savedNode=new NodeImpl();
-            savedNode=root.getRight();
-            root.setRight(node);
-            node.setRight(savedNode);
-        }
-    }*/
+
 
     // remove implementation given to you, do NOT change
     @Override
@@ -147,7 +118,7 @@ public class BSTImpl implements BST {
 
 
     @Override
-    public String findMax() {//calls the recursive method to find the minimum string in the tree
+    public String findMax() {//calls the recursive method to find the maximum string in the tree
         if(root==null){return null;}
         else{return root.findMax_r();}
     }

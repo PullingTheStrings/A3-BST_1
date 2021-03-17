@@ -16,12 +16,14 @@ public class Main {
          */
         BST bst = new BSTImpl();
 
+        bst.insert("A string");
 
-        System.out.println(bst.insert(null));
-        //System.out.println(bst.getRoot());
-        //System.out.println(bst.getRoot().getLeft());
-        //System.out.println(bst.getRoot().getRight());
-        System.out.println(bst.get(null)==null);
+        System.out.println(bst.size());
+        System.out.println(bst.findMin());
+        System.out.println(bst.findMax());
+        System.out.println(bst.get("A string"));
+        System.out.println(bst.contains("A string"));
+        System.out.println(bst.contains("A strings"));
 
 
 

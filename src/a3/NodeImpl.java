@@ -64,11 +64,11 @@ public class NodeImpl implements Node {
         }
     }
 
-    public void insert_r (Node node){//compares the node to the root of the tree, and it will call itself if
-        //the node needs to be compared to a subtree.
+    public void insert_r (Node node){//compares the node to itself, and the method will call itself if
+        //the node needs to be compared to a child.
 
         if(value.compareTo(node.getValue())<0){
-            if (right.getValue()==null){
+            if (right==null){
                 right=node;
             }
             else {
@@ -76,11 +76,11 @@ public class NodeImpl implements Node {
             }
         }
         else if(value.compareTo(node.getValue())>0){
-            if (left.getValue()==null){
-                left=null;
+            if (left==null){
+                left=node;
             }
             else {
-                left=node;
+                left.insert_r(node);
             }
         }
         else if(value.compareTo(node.getValue())==0){
@@ -94,7 +94,7 @@ public class NodeImpl implements Node {
         }
     }
 
-    public boolean isFull_r(){//returns true if the tree is empty and uses recursion to determine if every subtree is full
+    public boolean isFull_r(){//uses recursion to determine if every subtree is full
 
         if(children()==1){
             return false;
@@ -108,35 +108,35 @@ public class NodeImpl implements Node {
     }
     public String findMin_r(){//keeps going left until it reaches the leftmost leaf
 
-        if(left.getValue()==null){
-            return left.getValue();
+        if(left==null){
+            return value;
         }
         else{
             return left.findMin_r();
         }
     }
-    public String findMax_r(){//keeps going left until it reaches the leftmost leaf
+    public String findMax_r(){//keeps going right until it reaches the rightmost leaf
 
-        if(right.getValue()==null){
-            return right.getValue();
+        if(right==null){
+            return value;
         }
         else{
             return right.findMin_r();
         }
     }
-    public boolean contains_r(String s){//compares the string with the root, and if the strings are different, it
-        //calls itself on the appropriate subtree. If there is no subtree, then it returns false.
+    public boolean contains_r(String s){//compares the string with itself, and if the strings are different, the method
+        //calls itself on the appropriate child. If there is no child in the correct spot, then it returns false.
 
         if(s.equals(value)){return true;}
 
         else if(s.compareTo(value)>0){
-            if(right.getValue()==null){return false;}
+            if(right==null){return false;}
             else {
                 return right.contains_r(s);
             }
         }
         else{
-            if(left.getValue()==null){return false;}
+            if(left==null){return false;}
             else {
 
                 return left.contains_r(s);
@@ -144,13 +144,13 @@ public class NodeImpl implements Node {
             }
         }
     }
-    public Node get_r(String s){//checks if the root is s, and if it isn't, then it determines which subtree s would be in and runs itself on that subtree.
-        if(s.equals(value)){return this;}//if it's equal to the root string, return the root
+    public Node get_r(String s){//checks if the value is s, and if it isn't, then it determines which subtree s would be in and runs itself on that subtree.
+        if(s.equals(value)){return this;}//if it's equal to the string, return itself
         else if(s.compareTo(value)>0){//if it's bigger than the root string, recurse on the right child
 
             return right.get_r(s);
         }
-        else if(s.compareTo(value)<0){
+        else if(s.compareTo(value)<0){//if it's smaller than the root string, recurse on the left child
             return left.get_r(s);
         }
         else{
