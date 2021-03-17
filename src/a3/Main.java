@@ -15,13 +15,13 @@ public class Main {
          *
          */
         BST bst = new BSTImpl();
-        bst.insert("b");
+
 
         System.out.println(bst.insert(null));
         //System.out.println(bst.getRoot());
         //System.out.println(bst.getRoot().getLeft());
         //System.out.println(bst.getRoot().getRight());
-        System.out.println(bst.get("def")==null);
+        System.out.println(bst.get(null)==null);
 
 
 

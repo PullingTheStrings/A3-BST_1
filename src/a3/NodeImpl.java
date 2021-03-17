@@ -23,18 +23,12 @@ public class NodeImpl implements Node {
     @Override
     public Node getLeft() {
 
-        if(left==null){
-            Node nullNode=new NodeImpl(null);
-            return nullNode;}
-        else{return left;}
+      return left;
     }
 
     @Override
     public Node getRight() {
-        if(right==null){
-            Node nullNode=new NodeImpl(null);
-            return nullNode;}
-        else{return right;}
+        return right;
     }
 
     @Override
@@ -69,6 +63,102 @@ public class NodeImpl implements Node {
             return 2;
         }
     }
+
+    public void insert_r (Node node){//compares the node to the root of the tree, and it will call itself if
+        //the node needs to be compared to a subtree.
+
+        if(value.compareTo(node.getValue())<0){
+            if (right.getValue()==null){
+                right=node;
+            }
+            else {
+                right.insert_r(node);
+            }
+        }
+        else if(value.compareTo(node.getValue())>0){
+            if (left.getValue()==null){
+                left=null;
+            }
+            else {
+                left=node;
+            }
+        }
+        else if(value.compareTo(node.getValue())==0){
+            Node savedNode=right;
+            right=node;
+            right.setRight(savedNode);
+
+        }
+        else{
+            throw new RuntimeException("Conditionals didn't cover all possibilities");
+        }
+    }
+
+    public boolean isFull_r(){//returns true if the tree is empty and uses recursion to determine if every subtree is full
+
+        if(children()==1){
+            return false;
+        }
+        else if(children()==0){
+            return true;
+        }
+        else{
+            return left.isFull_r()&&right.isFull_r();
+        }
+    }
+    public String findMin_r(){//keeps going left until it reaches the leftmost leaf
+
+        if(left.getValue()==null){
+            return left.getValue();
+        }
+        else{
+            return left.findMin_r();
+        }
+    }
+    public String findMax_r(){//keeps going left until it reaches the leftmost leaf
+
+        if(right.getValue()==null){
+            return right.getValue();
+        }
+        else{
+            return right.findMin_r();
+        }
+    }
+    public boolean contains_r(String s){//compares the string with the root, and if the strings are different, it
+        //calls itself on the appropriate subtree. If there is no subtree, then it returns false.
+
+        if(s.equals(value)){return true;}
+
+        else if(s.compareTo(value)>0){
+            if(right.getValue()==null){return false;}
+            else {
+                return right.contains_r(s);
+            }
+        }
+        else{
+            if(left.getValue()==null){return false;}
+            else {
+
+                return left.contains_r(s);
+
+            }
+        }
+    }
+    public Node get_r(String s){//checks if the root is s, and if it isn't, then it determines which subtree s would be in and runs itself on that subtree.
+        if(s.equals(value)){return this;}//if it's equal to the root string, return the root
+        else if(s.compareTo(value)>0){//if it's bigger than the root string, recurse on the right child
+
+            return right.get_r(s);
+        }
+        else if(s.compareTo(value)<0){
+            return left.get_r(s);
+        }
+        else{
+            throw new RuntimeException("Conditionals didn't cover all possibilities");
+
+        }
+    }
+
 
 
 }
