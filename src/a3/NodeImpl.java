@@ -121,7 +121,7 @@ public class NodeImpl implements Node {
             return value;
         }
         else{
-            return right.findMin_r();
+            return right.findMax_r();
         }
     }
     public boolean contains_r(String s){//compares the string with itself, and if the strings are different, the method
